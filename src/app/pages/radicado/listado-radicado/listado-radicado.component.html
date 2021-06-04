@@ -1,0 +1,38 @@
+<div class="container mt-3">
+  <h1>Radicados Existentes</h1>
+
+  <button type="button" class="btn btn-warning m-1" (click)="toNuevoRadicado()">NUEVO</button>
+<table datatable class="table table-striped table-hover">
+<thead class="thead-dark">
+  <tr>
+    <th scope="col">No.#</th>
+
+    <th scope="col">Nombre</th>
+    <th scope="col">Respaldo Digital</th>
+    <th scope="col">Estado</th>
+    <th scope="col">Fecha</th>
+    <th scope="col">Acciones</th>
+
+  </tr>
+</thead>
+<tbody>
+  <tr  *ngFor="let radicado of  listaRadicado;">
+    <th scope="row">{{radicado.idRadicado}}</th>
+    <td>{{radicado.nombre}}</td>
+    <td>{{radicado.respaldo}}</td>
+    <td *ngIf="radicado.estado==1">en proceso</td>
+    <td *ngIf="radicado.estado==2">Entregado</td>
+    <td>{{radicado.fecha}}</td>
+
+
+
+    <td class="btn-group" role="group">
+
+       <button type="button" class="btn btn-outline-success m-1" (click)="toEditarRadicado(radicado)">EDITAR</button>
+    </td>
+  </tr>
+
+</tbody>
+</table>
+</div>
+

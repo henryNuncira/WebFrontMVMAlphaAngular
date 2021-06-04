@@ -1,0 +1,109 @@
+<form class="mt-3 col-md-8 offset-md-2"  (ngSubmit)= "toGuardarUsuario()" [formGroup]="UsuarioForm" >
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control" id="readOnlyInput" placeholder="Solo lectura Id" readonly="" formControlName="idUsuario">
+      </div>
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control" placeholder="Nit/Dni" formControlName="dni"
+        [ngClass] = "{
+          'is-invalid':isValidField('dni')
+        }"
+          >
+         <div class="invalid-feedback">
+
+          <span *ngIf="UsuarioForm.get('dni')?.errors?.required">
+            Lo sentimos, Nit de usuario es vacío. ¿Prueba otro?
+          </span>
+          </div>
+      </div>
+    </div>
+    <div class="form-row" *ngIf="this.bandera==1">
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control" placeholder="clave" formControlName="clave"
+        [ngClass] = "{
+          'is-invalid':isValidField('clave')
+        }"
+        >
+        <div class="invalid-feedback">
+
+          <span *ngIf="UsuarioForm.get('clave')?.errors?.required">
+            Lo siento, la clave no puede ser vacío. ¿Prueba otro?
+          </span>
+          </div>
+      </div>
+
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control" placeholder="Nombre Completo" formControlName="nombre"
+        [ngClass] = "{
+          'is-invalid':isValidField('nombre')
+        }"
+        >
+        <div class="invalid-feedback">
+
+          <span *ngIf="UsuarioForm.get('nombre')?.errors?.required">
+            Lo siento, ese nombre de usuario es vacío. ¿Prueba otro?
+          </span>
+          </div>
+      </div>
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control" placeholder="Telefono" formControlName="telefono"
+        [ngClass] = "{
+          'is-invalid':isValidField('telefono')
+        }"
+        >
+        <div class="invalid-feedback">
+
+          <span *ngIf="UsuarioForm.get('telefono')?.errors?.required">
+            Lo siento, ese nombre de usuario es vacío. ¿Prueba otro?''
+          </span>
+          <span *ngIf="UsuarioForm.get('telefono')?.errors?.minlength">
+            el numero debe tener un minimo {{UsuarioForm.get('telefono')?.errors?.minlength?.requiredLength}}
+            caracteres, si es un telefono fijo recuerda añadir el indicativo
+          </span>
+          </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control" placeholder="Dirección" formControlName="direccion"
+        [ngClass] = "{
+          'is-invalid':isValidField('direccion')
+        }"
+          >
+         <div class="invalid-feedback">
+
+          <span *ngIf="UsuarioForm.get('direccion')?.errors?.required">
+            Lo siento, dirección es vacío. ¿Prueba otro?
+          </span>
+
+          </div>
+      </div>
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control" placeholder="Correo Electronico" formControlName="email"
+        [ngClass] = "{
+          'is-invalid':isValidField('email')
+        }"
+          >
+         <div class="invalid-feedback">
+
+          <span *ngIf="UsuarioForm.get('email')?.errors?.required">
+            Lo siento, ese correo Electronico es vacío. ¿Prueba otro?
+          </span>
+          <span *ngIf="UsuarioForm.get('email')?.errors?.pattern">
+            su formato de correo debe ser EJ: usuario@correo.com
+          </span>
+          </div>
+      </div>
+    </div>
+    <div *ngIf="this.bandera==1">
+    <button  type="submit" id="save"  class="btn btn-success btn-block text-light">Guardar</button>
+  </div>
+  <div  *ngIf="this.bandera==0">
+    <button type="submit" id="modify" class="btn btn-success btn-block text-light">Modificar</button>
+  </div>
+  </form>
+  <button class="btn btn-primary btn-sm m-1" (click)= "toList()">Volver a la lista</button>
+

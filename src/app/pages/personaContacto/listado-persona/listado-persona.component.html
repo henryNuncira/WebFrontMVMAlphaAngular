@@ -1,0 +1,40 @@
+<div class="container mt-3">
+
+  <h1>Usuarios Del sistema (Destinatario/Remitente)</h1>
+  <button type="button" class="btn btn-warning m-1" (click)="toNuevoRadicado()">NUEVO</button>
+<table datatable class="table table-striped table-hover">
+<thead class="thead-dark">
+  <tr>
+    <th scope="col">No.#</th>
+    <th scope="col">tipo Contacto</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Nit/Dni</th>
+    <th scope="col">Correo Electronico</th>
+    <th scope="col">Dirección</th>
+    <th scope="col">Telefono</th>
+
+    <th scope="col">Acciones</th>
+
+  </tr>
+</thead>
+<tbody>
+  <tr  *ngFor="let persona of  listaPersona;">
+    <th scope="row">{{persona.idPersona}}</th>
+    <td *ngIf="persona.tipoContacto==1">Destinatario</td>
+    <td *ngIf="persona.tipoContacto==2">Remitente</td>
+
+    <td>{{persona.nombre}}</td>
+    <td>{{persona.nit}}</td>
+    <td>{{persona.correo}}</td>
+    <td>{{persona.direccion}}</td>
+    <td>{{persona.telefono}}</td>
+
+    <td class="btn-group" role="group">
+       <button type="button" class="btn btn-outline-danger m-1" (click)="toDeletePersona(persona.idPersona)">ELIMINAR</button>
+       <button type="button" class="btn btn-outline-success m-1" (click)="toEditarPersona(persona)">EDITAR</button>
+    </td>
+  </tr>
+
+</tbody>
+</table>
+</div>

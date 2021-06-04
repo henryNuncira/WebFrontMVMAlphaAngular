@@ -1,0 +1,129 @@
+<div class="mb-3">
+
+<h1>--Información de contacto</h1>
+<form class="mt-3 col-md-8 offset-md-2"  (ngSubmit)= "toGuardarPersona()" [formGroup]="PersonaForm" >
+
+  <div class="mb-3 row">
+    <label for="formFile" class="col-sm-2 col-form-label">Id</label>
+    <div class="form-group col-md-6">
+      <input type="text" class="form-control" id="readOnlyInput" placeholder="Solo lectura Id" readonly="" formControlName="idPersona">
+   </div>
+  </div>
+  <div class="mb-3 row">
+    <label for="formFile" class="form-label">Tipo Contacto </label>
+    <div class="form-group col-md-6">
+        <input type="number" class="form-control" placeholder="Tipo de envio" formControlName="tipoContacto"
+        [ngClass] = "{
+          'is-invalid':isValidField('tipoContacto')
+        }"
+          >
+        <div class="invalid-feedback">
+
+          <span *ngIf="PersonaForm.get('tipoContacto')?.errors?.required">
+            Lo sentimos, Nit de usuario es vacío. ¿Prueba otro?
+          </span>
+        </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+
+
+    <div class="form-group col-md-6">
+      <label for="formFile" class="form-label">Nit / Dni</label>
+
+      <input type="text" class="form-control" placeholder="Nit/Dni" formControlName="nit"
+      [ngClass] = "{
+        'is-invalid':isValidField('nit')
+      }"
+        >
+       <div class="invalid-feedback">
+
+        <span *ngIf="PersonaForm.get('nit')?.errors?.required">
+          Lo sentimos, Nit de usuario es vacío. ¿Prueba otro?
+        </span>
+        </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="formFile" class="form-label">Nombre y apellidos</label>
+
+      <input type="text" class="form-control" placeholder="Nombre Completo" formControlName="nombre"
+      [ngClass] = "{
+        'is-invalid':isValidField('nombre')
+      }"
+      >
+      <div class="invalid-feedback">
+
+        <span *ngIf="PersonaForm.get('nombre')?.errors?.required">
+          Lo siento, ese nombre de usuario es vacío. ¿Prueba otro?
+        </span>
+        </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="formFile" class="form-label">Telefono</label>
+
+      <input type="text" class="form-control" placeholder="Telefono" formControlName="telefono"
+      [ngClass] = "{
+        'is-invalid':isValidField('telefono')
+      }"
+      >
+      <div class="invalid-feedback">
+
+        <span *ngIf="PersonaForm.get('telefono')?.errors?.required">
+          Lo siento, ese nombre de usuario es vacío. ¿Prueba otro?''
+        </span>
+        <span *ngIf="PersonaForm.get('telefono')?.errors?.minlength">
+          el numero debe tener un minimo {{PersonaForm.get('telefono')?.errors?.minlength?.requiredLength}}
+          caracteres, si es un telefono fijo recuerda añadir el indicativo
+        </span>
+        </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="formFile" class="form-label">Dirección de residencia</label>
+
+      <input type="text" class="form-control" placeholder="Dirección" formControlName="direccion"
+      [ngClass] = "{
+        'is-invalid':isValidField('direccion')
+      }"
+        >
+       <div class="invalid-feedback">
+
+        <span *ngIf="PersonaForm.get('direccion')?.errors?.required">
+          Lo siento, dirección es vacío. ¿Prueba otro?
+        </span>
+
+        </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="formFile" class="form-label">@e-mail</label>
+
+      <input type="text" class="form-control" placeholder="Correo Electronico" formControlName="correo"
+      [ngClass] = "{
+        'is-invalid':isValidField('correo')
+      }"
+        >
+       <div class="invalid-feedback">
+
+        <span *ngIf="PersonaForm.get('correo')?.errors?.required">
+          Lo siento, ese correo Electronico es vacío. ¿Prueba otro?
+        </span>
+        <span *ngIf="PersonaForm.get('correo')?.errors?.pattern">
+          su formato de correo debe ser EJ: usuario@correo.com
+        </span>
+        </div>
+    </div>
+  </div>
+  <div *ngIf="this.bandera==1">
+  <button  type="submit" id="save"  class="btn btn-success btn-block text-light">Guardar</button>
+</div>
+<div  *ngIf="this.bandera==0">
+  <button type="submit" id="modify" class="btn btn-success btn-block text-light">Modificar</button>
+</div>
+</form>
+<button class="btn btn-primary btn-sm m-1" (click)= "toList()">Volver a la lista</button>
+</div>
